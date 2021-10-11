@@ -28,5 +28,4 @@ data class Position(
 
 data class MBUnit(
     val id: Int,
-    val positions: List<Position>
 )

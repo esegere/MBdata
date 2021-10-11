@@ -8,18 +8,18 @@ import java.util.*
 
 fun SchemaBuilder.unitQueries () {
     query("units") { // get lis of all available units
-        resolver { page: Int? ->
+        resolver { ->
             listOf(
-                MBUnit(1, listOf(Position(Date().toString(), Town.AZCAPOTZALCO))),
-                MBUnit(2, listOf(Position(Date().toString(), Town.ALVARO_OBREGON))),
-                MBUnit(3, listOf(Position(Date().toString(), Town.AZCAPOTZALCO))),
+                MBUnit(1),
+                MBUnit(2),
+                MBUnit(3),
             )
         }
     }
 
     query("unit") {
         resolver { id: Int ->
-            MBUnit(id, listOf(Position(Date().toString(), Town.ALVARO_OBREGON)))
+            MBUnit(id)
         }
     }
 }
