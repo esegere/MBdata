@@ -1,17 +1,13 @@
 package com.example.plugins
 
 import com.apurebase.kgraphql.GraphQL
-import com.apurebase.kgraphql.GraphQLError
+import com.example.graphql.configureSchema
 import io.ktor.application.*
 
-
-fun Application.configureGraphQL() {
+fun Application.configureGraphQL() { // 
     install(GraphQL) {
         playground = true
-        schema {
-            query("hello") {
-                resolver { -> "World" }
-            }
-        }
+        endpoint = "graphql"
+        configureSchema()
     }
 }
