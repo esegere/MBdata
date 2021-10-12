@@ -1,8 +1,8 @@
 package com.example.graphql
 
 import com.apurebase.kgraphql.GraphQL
+import com.example.domain.Town
 import com.example.graphql.queries.unitQueries
-import java.util.*
 
 fun GraphQL.Configuration.configureSchema() {
 
@@ -11,13 +11,6 @@ fun GraphQL.Configuration.configureSchema() {
         // include datatypes in schema
         type<MBUnit> {
             name = "Unit"
-            property<List<Position>>("positions") {
-                resolver { mbUnit: MBUnit ->
-                    listOf(
-                        Position(Date().toString(), Town.AZCAPOTZALCO)
-                    )
-                }
-            }
         }
         enum<Town>()
 

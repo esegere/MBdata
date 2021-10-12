@@ -1,6 +1,8 @@
 package com.example.graphql
 
+import com.example.domain.Position
 
-class MBUnit(val id: Int, ){
-    public val positions: List<Position> by lazy { listOf(Position()) }
-}
+data class MBUnit(
+    val id: Int,
+    val positions: List<Position> = listOf()
+)
