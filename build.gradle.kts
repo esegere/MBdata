@@ -26,7 +26,7 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:$logback_version")
     implementation("com.apurebase:kgraphql:$kgraphql_version")
     implementation("com.apurebase:kgraphql-ktor:$kgraphql_version")
-    implementation("com.influxdb:influxdb-client-java:$influxdb_client_version")
+    implementation("com.influxdb:influxdb-client-kotlin:$influxdb_client_version")
     testImplementation("io.ktor:ktor-server-tests:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test:$kotlin_version")
 }
