@@ -2,6 +2,7 @@ package com.example.graphql
 
 import com.apurebase.kgraphql.GraphQL
 import com.example.domain.Town
+import com.example.graphql.queries.townQueries
 import com.example.graphql.queries.unitQueries
 
 fun GraphQL.Configuration.configureSchema() {
@@ -16,5 +17,6 @@ fun GraphQL.Configuration.configureSchema() {
 
         // add extension functions with related operations in this section
         unitQueries()
+        townQueries()
     }
 }
