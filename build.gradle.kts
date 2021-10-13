@@ -3,16 +3,26 @@ val kotlin_version: String by project
 val logback_version: String by project
 val kgraphql_version: String by project
 val influxdb_client_version: String by project
+val main_class: String by project
 
 plugins {
     application
+    id("com.github.johnrengelman.shadow") version "7.0.0"
     kotlin("jvm") version "1.5.31"
 }
 
 group = "com.example"
 version = "0.0.1"
 application {
-    mainClass.set("com.example.ApplicationKt")
+    mainClass.set("$main_class")
+}
+
+tasks {
+    shadowJar {
+        manifest {
+            attributes(Pair("Main-Class", "$main_class"))
+        }
+    }
 }
 
 repositories {
