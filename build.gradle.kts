@@ -33,6 +33,7 @@ dependencies {
     implementation("io.ktor:ktor-server-core:$ktor_version")
     implementation("io.ktor:ktor-gson:$ktor_version")
     implementation("io.ktor:ktor-server-netty:$ktor_version")
+    implementation("io.ktor:ktor-html-builder:$ktor_version")
     implementation("ch.qos.logback:logback-classic:$logback_version")
     implementation("com.apurebase:kgraphql:$kgraphql_version")
     implementation("com.apurebase:kgraphql-ktor:$kgraphql_version")
