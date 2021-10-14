@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Heroku Deploy
 
 on:
   workflow_dispatch:
