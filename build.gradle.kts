@@ -7,7 +7,7 @@ val main_class: String by project
 val retrofit_version: String by project
 val gson_version: String by project
 val exposed_version: String by project
-val postgresql_version: String by project
+val sqlite_version: String by project
 val hikari_version: String by project
 
 plugins {
@@ -55,8 +55,8 @@ dependencies {
     implementation("org.jetbrains.exposed:exposed-dao:$exposed_version")
     implementation("org.jetbrains.exposed:exposed-jdbc:$exposed_version")
     implementation("org.jetbrains.exposed:exposed-java-time:$exposed_version")
-    // postgres
-    implementation("org.postgresql:postgresql:$postgresql_version")
+    // sqlite
+    implementation("org.xerial:sqlite-jdbc:$sqlite_version")
     //hikari
     implementation("com.zaxxer:HikariCP:$hikari_version")
 
