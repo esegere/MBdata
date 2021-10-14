@@ -6,6 +6,9 @@ val influxdb_client_version: String by project
 val main_class: String by project
 val retrofit_version: String by project
 val gson_version: String by project
+val exposed_version: String by project
+val postgresql_version: String by project
+val hikari_version: String by project
 
 plugins {
     application
@@ -47,10 +50,11 @@ dependencies {
     //graphql
     implementation("com.apurebase:kgraphql:$kgraphql_version")
     implementation("com.apurebase:kgraphql-ktor:$kgraphql_version")
-    //influx
-    implementation("com.influxdb:influxdb-client-kotlin:$influxdb_client_version")
-    implementation("com.influxdb:flux-dsl:$influxdb_client_version")
-
+    implementation("org.jetbrains.exposed:exposed-core:$exposed_version")
+    implementation("org.jetbrains.exposed:exposed-dao:$exposed_version")
+    implementation("org.jetbrains.exposed:exposed-jdbc:$exposed_version")
+    implementation("org.postgresql:postgresql:$postgresql_version")
+    implementation("com.zaxxer:HikariCP:$hikari_version")
 
     testImplementation("io.ktor:ktor-server-tests:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test:$kotlin_version")
