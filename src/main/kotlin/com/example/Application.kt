@@ -8,10 +8,7 @@ import com.example.plugins.configureRouting
 import com.example.plugins.configureSerialization
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 
 
 fun main(): Unit = runBlocking {
@@ -19,7 +16,10 @@ fun main(): Unit = runBlocking {
     async(Dispatchers.IO) { // in order to perform concurrent IO
 
         launch { //launch client
-            retrieveAPIInfo()
+            while (true) {
+                retrieveAPIInfo()
+                delay(120000) //every two minutes
+            }
         }
 
         //launch server
