@@ -50,10 +50,13 @@ dependencies {
     //graphql
     implementation("com.apurebase:kgraphql:$kgraphql_version")
     implementation("com.apurebase:kgraphql-ktor:$kgraphql_version")
+    //exposed
     implementation("org.jetbrains.exposed:exposed-core:$exposed_version")
     implementation("org.jetbrains.exposed:exposed-dao:$exposed_version")
     implementation("org.jetbrains.exposed:exposed-jdbc:$exposed_version")
+    // postgres
     implementation("org.postgresql:postgresql:$postgresql_version")
+    //hikari
     implementation("com.zaxxer:HikariCP:$hikari_version")
 
     testImplementation("io.ktor:ktor-server-tests:$ktor_version")
