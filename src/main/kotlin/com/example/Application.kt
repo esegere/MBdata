@@ -7,7 +7,13 @@ import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 
 fun main() {
-    embeddedServer(Netty, port = 80, host = "0.0.0.0") {
+    val port = System.getenv("PORT").toIntOrNull() ?: 80 // hardcoded value for default port
+
+    embeddedServer(
+        Netty,
+        port = port,
+        host = "0.0.0.0"
+    ) {
         configureGraphQL()
         configureSerialization()
         configureLogging()
