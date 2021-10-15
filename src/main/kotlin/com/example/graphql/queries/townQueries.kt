@@ -2,19 +2,23 @@ package com.example.graphql.queries
 
 import com.apurebase.kgraphql.schema.dsl.SchemaBuilder
 import com.example.domain.Town
-import com.example.repository.influx.InfluxDB
+import com.example.repository.database.SQLiteMBUnitDAO
+import com.example.repository.database.SqlitePositionDAO
 
 fun SchemaBuilder.townQueries() {
 
-    query("towns") { // get lis of all available units
+    val positionDAO = SqlitePositionDAO()
+    val unitsDAO = SQLiteMBUnitDAO(positionDAO)
+
+    query("towns") { // get list of all available units
         resolver { ->
-            InfluxDB.positions.listTowns()
+            positionDAO.listTowns()
         }
     }
 
     query("unitsByTown") {
         resolver { town: Town ->
-            InfluxDB.units.getUnits().filter {
+            unitsDAO.getUnits().filter {
                 it.positions.last().town == town
             }
         }

@@ -9,11 +9,11 @@ import kotlinx.coroutines.*
 
 
 fun main(): Unit = runBlocking {
-    initDB()
 
     val port = System.getenv("PORT")?.toIntOrNull() ?: 8080 // hardcoded value for default port
 
     async(Dispatchers.IO) { // in order to perform concurrent IO
+        initDB() // DB configuring
 
         launch { //launch client
             while (true) {

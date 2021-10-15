@@ -1,19 +1,24 @@
 package com.example.graphql.queries
 
 import com.apurebase.kgraphql.schema.dsl.SchemaBuilder
-import com.example.repository.influx.InfluxDB
+import com.example.repository.database.SQLiteMBUnitDAO
+import com.example.repository.database.SqlitePositionDAO
 
-fun SchemaBuilder.unitQueries () {
+
+fun SchemaBuilder.unitQueries() {
+
+    val positionDAO = SqlitePositionDAO()
+    val unitsDAO = SQLiteMBUnitDAO(positionDAO)
 
     query("units") { // get lis of all available units
         resolver { ->
-            InfluxDB.units.getUnits()
+            unitsDAO.getUnits()
         }
     }
 
     query("unit") {
         resolver { id: Int ->
-            InfluxDB.units.getUnitById(id)
+            unitsDAO.getUnitByVehicleId(id)
         }
     }
 }
