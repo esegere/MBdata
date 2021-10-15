@@ -5,14 +5,14 @@ import com.example.domain.RemoteMBUnit
 import com.example.repository.database.SQLiteMBUnitDAO
 import com.example.repository.database.SQLitePositionDAO
 import com.example.repository.webService.RetrofitClient
-import org.jetbrains.exposed.sql.transactions.transaction
+
 
 private object persistence {
     val positionDAO = SQLitePositionDAO()
     val unitsDAO = SQLiteMBUnitDAO(positionDAO)
 }
 
-fun addRegister(remoteUnit: RemoteMBUnit) = transaction {
+fun addRegister(remoteUnit: RemoteMBUnit) {
     persistence.unitsDAO.addUnit(remoteUnit.vehicleId)
 }
 
