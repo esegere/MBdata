@@ -1,11 +1,5 @@
 package com.example.domain
 
-@JvmInline
-value class Latitude(val value: Double)
-
-@JvmInline
-value class Longitude(val value: Double)
-
 enum class Town() {
     AZCAPOTZALCO,
     ALVARO_OBREGON,
@@ -23,8 +17,4 @@ enum class Town() {
     TLAHUAC,
     VENUSTIANO_CARRANZA,
     XOCHIMILCO;
-
-    constructor(latitude: Latitude, longitude: Longitude) : this() {
-        TLAHUAC
-    }
 }
