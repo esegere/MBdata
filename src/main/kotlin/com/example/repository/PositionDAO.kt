@@ -9,5 +9,6 @@ interface PositionDAO {
     )
 
     fun getPositions(): List<Position>
-    fun getPositionByUnitID(id: Int): List<Position>?
+    fun getPositionByUnitID(id: Int): List<Position>
+    fun addPositionForUnitID(id: Int, position: Position)
 }
