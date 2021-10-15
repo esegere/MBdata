@@ -8,12 +8,9 @@ import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.selectAll
 import org.jetbrains.exposed.sql.transactions.transaction
 import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
 
 class SQLitePositionDAO : PositionDAO {
-
-    private val formatter = DateTimeFormatter.ofPattern("yyyy-MM-ddTHH:mm:ss") // the format that is received from API
 
     override fun getPositions(): List<Position> = transaction {
         Positions.selectAll().map {
@@ -45,7 +42,7 @@ class SQLitePositionDAO : PositionDAO {
         Positions.insert {
             it[Positions.unitId] = id
             it[Positions.town] = position.town
-            it[Positions.date] = LocalDateTime.parse(position.date, formatter)
+            it[Positions.date] = LocalDateTime.parse(position.date)
         }
     }
 }

@@ -6,7 +6,7 @@ import com.example.domain.RemoteMBUnit
 import com.example.domain.Town
 import com.example.repository.database.SQLiteMBUnitDAO
 import com.example.repository.database.SQLitePositionDAO
-import com.example.repository.webService.RetrofitClient
+import com.example.repository.webService.RetrofitMBClient
 
 
 private object persistence {
@@ -27,7 +27,7 @@ fun addRegister(remoteUnit: RemoteMBUnit) {
 
 
 suspend fun retrieveElements(from: Int, amount: Int) {
-    val call = RetrofitClient.webService.getUnits(amount, from)
+    val call = RetrofitMBClient.webService.getUnits(amount, from)
     call.body()?.result?.records?.forEach {
         addRegister(it)
     }
@@ -35,7 +35,7 @@ suspend fun retrieveElements(from: Int, amount: Int) {
 
 suspend fun retrieveAPIInfo() {
     val pagingAmount = 10
-    val call = RetrofitClient.webService.getUnits(0)
+    val call = RetrofitMBClient.webService.getUnits(0)
     call.body()?.result?.total?.let { totalPages: Int -> // retrieve content pages by pagingAmount
         for (i in 0..totalPages step pagingAmount) {
             retrieveElements(i, pagingAmount)
