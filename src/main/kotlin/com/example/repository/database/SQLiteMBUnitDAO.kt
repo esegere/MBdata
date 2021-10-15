@@ -28,7 +28,7 @@ class SQLiteMBUnitDAO(
         Units.selectAll().map {
             MBUnit(
                 it[Units.vehicleId],
-                positionDAO.getPositionByUnitID(it[Positions.id])
+                positionDAO.getPositionByUnitID(it[Units.id])
             )
         }
     }
