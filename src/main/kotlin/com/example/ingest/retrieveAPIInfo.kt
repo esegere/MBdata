@@ -1,9 +1,11 @@
 package com.example.ingest
 
 
+import com.example.computations.Latitude
+import com.example.computations.Longitude
+import com.example.computations.nearestTown
 import com.example.domain.Position
 import com.example.domain.RemoteMBUnit
-import com.example.domain.Town
 import com.example.repository.database.SQLiteMBUnitDAO
 import com.example.repository.database.SQLitePositionDAO
 import com.example.repository.webService.RetrofitMBClient
@@ -19,7 +21,10 @@ fun addRegister(remoteUnit: RemoteMBUnit) {
     persistence.positionDAO.addPositionForUnitID(
         remoteUnit.vehicleId,
         Position(
-            Town.TLAHUAC,
+            nearestTown(
+                Latitude(remoteUnit.positionLatitude),
+                Longitude(remoteUnit.positionLongitude)
+            ),
             remoteUnit.dateUpdated
         )
     )
@@ -29,7 +34,11 @@ fun addRegister(remoteUnit: RemoteMBUnit) {
 suspend fun retrieveElements(from: Int, amount: Int) {
     val call = RetrofitMBClient.webService.getUnits(amount, from)
     call.body()?.result?.records?.forEach {
-        addRegister(it)
+        try {
+            addRegister(it)
+        } catch (e: Exception) {
+            return
+        }
     }
 }
 

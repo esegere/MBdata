@@ -18,7 +18,7 @@ fun main(): Unit = runBlocking {
         launch { //launch client
             while (true) {
                 retrieveAPIInfo()
-                delay(120000) //every two minutes
+                delay(180000L) //every 30 mins
             }
         }
 

@@ -9,6 +9,7 @@ val gson_version: String by project
 val exposed_version: String by project
 val sqlite_version: String by project
 val hikari_version: String by project
+val text_version: String by project
 
 plugins {
     application
