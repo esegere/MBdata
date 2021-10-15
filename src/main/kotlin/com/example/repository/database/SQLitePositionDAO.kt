@@ -34,13 +34,19 @@ class SQLitePositionDAO : PositionDAO {
     }
 
     override fun addPositionForUnitID(id: Int, position: Position): Unit = transaction {
+        val foundId = Units.select { // get row for id
+            Units.vehicleId eq id
+        }.firstOrNull()?.let {
+            it[Units.id]
+        } ?: return@transaction //if vehicle id does not exist exit, nothing else to do
+
         val found = Positions.selectAll().any {
             it[Positions.date].toString() == position.date &&
-                    it[Positions.unitId] == id
+                    it[Positions.unitId] == foundId
         }
         if (found) return@transaction
         Positions.insert {
-            it[Positions.unitId] = id
+            it[Positions.unitId] = foundId
             it[Positions.town] = position.town
             it[Positions.date] = LocalDateTime.parse(position.date)
         }
