@@ -1,7 +1,9 @@
 package com.example.ingest
 
 
+import com.example.domain.Position
 import com.example.domain.RemoteMBUnit
+import com.example.domain.Town
 import com.example.repository.database.SQLiteMBUnitDAO
 import com.example.repository.database.SQLitePositionDAO
 import com.example.repository.webService.RetrofitClient
@@ -14,15 +16,20 @@ private object persistence {
 
 fun addRegister(remoteUnit: RemoteMBUnit) {
     persistence.unitsDAO.addUnit(remoteUnit.vehicleId)
+    persistence.positionDAO.addPositionForUnitID(
+        remoteUnit.vehicleId,
+        Position(
+            Town.TLAHUAC,
+            remoteUnit.dateUpdated
+        )
+    )
 }
 
 
 suspend fun retrieveElements(from: Int, amount: Int) {
     val call = RetrofitClient.webService.getUnits(amount, from)
     call.body()?.result?.records?.forEach {
-        it?.let {
-            addRegister(it)
-        }
+        addRegister(it)
     }
 }
 
